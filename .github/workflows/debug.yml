@@ -5,6 +5,10 @@ on:
     branches:
       - main
   workflow_dispatch: { }
+
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,3 +36,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Publish debug build as a release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: debug-build
+          name: Debug build (unsigned, no secrets required)
+          body: Auto-updated on every push to main. Not signed with a stable key - reinstall (not update) if this replaces a previous install signed differently.
+          files: app/build/outputs/apk/debug/app-debug.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
