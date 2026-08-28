@@ -2,13 +2,19 @@ package dev.brahmkshatriya.echo.ui.settings
 
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import dev.brahmkshatriya.echo.R
+import dev.brahmkshatriya.echo.accessibility.KeybindAccessibilityService.Companion.DEFAULT_PLAY_PAUSE_KEYBIND
+import dev.brahmkshatriya.echo.accessibility.KeybindAccessibilityService.Companion.DEFAULT_SKIP_KEYBIND
+import dev.brahmkshatriya.echo.accessibility.KeybindAccessibilityService.Companion.PLAY_PAUSE_KEYBIND_KEY
+import dev.brahmkshatriya.echo.accessibility.KeybindAccessibilityService.Companion.SKIP_KEYBIND_KEY
 import dev.brahmkshatriya.echo.common.models.ImageHolder.Companion.toResourceImageHolder
 import dev.brahmkshatriya.echo.playback.PlayerService.Companion.CACHE_SIZE
 import dev.brahmkshatriya.echo.playback.PlayerService.Companion.CLOSE_PLAYER
@@ -22,6 +28,7 @@ import dev.brahmkshatriya.echo.ui.common.FragmentUtils.openFragment
 import dev.brahmkshatriya.echo.ui.player.PlayerViewModel.Companion.KEEP_QUEUE
 import dev.brahmkshatriya.echo.ui.settings.AudioEffectsFragment.Companion.AUDIO_FX
 import dev.brahmkshatriya.echo.utils.ContextUtils.SETTINGS_NAME
+import dev.brahmkshatriya.echo.utils.ui.prefs.KeybindPreference
 import dev.brahmkshatriya.echo.utils.ui.prefs.MaterialListPreference
 import dev.brahmkshatriya.echo.utils.ui.prefs.MaterialSliderPreference
 import dev.brahmkshatriya.echo.utils.ui.prefs.TransitionPreference
@@ -153,6 +160,47 @@ class SettingsPlayerFragment : BaseSettingsFragment() {
                     addPreference(this)
                 }
             }
+
+            PreferenceCategory(context).apply {
+                title = getString(R.string.keybinds)
+                key = "keybinds"
+                isIconSpaceReserved = false
+                layoutResource = R.layout.preference_category
+                screen.addPreference(this)
+
+                TransitionPreference(context).apply {
+                    key = OPEN_ACCESSIBILITY_SETTINGS
+                    title = getString(R.string.keybind_enable)
+                    summary = getString(R.string.keybind_enable_summary)
+                    layoutResource = R.layout.preference
+                    isIconSpaceReserved = false
+                    addPreference(this)
+                }
+
+                KeybindPreference(context).apply {
+                    key = SKIP_KEYBIND_KEY
+                    title = getString(R.string.keybind_skip)
+                    isIconSpaceReserved = false
+                    addPreference(this)
+                    summary = currentValue(DEFAULT_SKIP_KEYBIND)
+                    setOnPreferenceClickListener {
+                        showRecorderDialog(DEFAULT_SKIP_KEYBIND)
+                        true
+                    }
+                }
+
+                KeybindPreference(context).apply {
+                    key = PLAY_PAUSE_KEYBIND_KEY
+                    title = getString(R.string.keybind_play_pause)
+                    isIconSpaceReserved = false
+                    addPreference(this)
+                    summary = currentValue(DEFAULT_PLAY_PAUSE_KEYBIND)
+                    setOnPreferenceClickListener {
+                        showRecorderDialog(DEFAULT_PLAY_PAUSE_KEYBIND)
+                        true
+                    }
+                }
+            }
         }
 
         override fun onPreferenceTreeClick(preference: Preference): Boolean {
@@ -163,8 +211,17 @@ class SettingsPlayerFragment : BaseSettingsFragment() {
                     true
                 }
 
+                OPEN_ACCESSIBILITY_SETTINGS -> {
+                    startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+                    true
+                }
+
                 else -> false
             }
+        }
+
+        companion object {
+            private const val OPEN_ACCESSIBILITY_SETTINGS = "open_accessibility_settings"
         }
     }
 }
