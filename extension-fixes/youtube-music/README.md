@@ -1,7 +1,12 @@
-# YouTube Music extension: YtContinuation crash fix
+# YouTube Music extension fixes
 
-Fix for the stack trace reported against the "Youtube Music" extension (source:
-[Abhishek890/Eco-Youtube_Music](https://github.com/Abhishek890/Eco-Youtube_Music)):
+These are the actual fixes for the "Youtube Music" extension, applied and maintained on
+[PepeOnGithub/Eco-Youtube_Music](https://github.com/PepeOnGithub/Eco-Youtube_Music) (a fork of
+[Abhishek890/Eco-Youtube_Music](https://github.com/Abhishek890/Eco-Youtube_Music), kept in sync
+with it via a scheduled workflow). This directory just mirrors the fixed files for reference —
+**it is not part of the Echo app build**; the app loads the extension from the fork above.
+
+## `YtContinuation.kt` / `EchoPlaylistContinuationEndpoint.kt`: crash on end-of-list
 
 ```
 kotlinx.serialization.MissingFieldException: Field 'onResponseReceivedActions' is required
@@ -13,24 +18,20 @@ YouTube's browse-continuation response omits `onResponseReceivedActions` once th
 more items to continue (e.g. reaching the end of a playlist). The extension's model declared
 the field as required, so deserialization threw instead of treating it as "no more results" —
 the same shape of bug the rest of that extension's endpoints already guard against elsewhere
-with nullable fields and safe calls.
+with nullable fields and safe calls. Made the field (and its nested fields on the same path)
+nullable, falling back to an empty list.
 
-This directory is **not part of the Echo app build** — these are drop-in replacements for the
-two files of the same name in the extension's own repository:
+## `EchoEnhancedSongEndpoint.kt`: tracks always showing "Unknown Artist"
 
-- `endpoints/YtContinuation.kt` → `ext/src/main/java/dev/brahmkshatriya/echo/extension/endpoints/YtContinuation.kt`
-- `endpoints/EchoPlaylistContinuationEndpoint.kt` → `ext/src/main/java/dev/brahmkshatriya/echo/extension/endpoints/EchoPlaylistContinuationEndpoint.kt`
+The endpoint only fell back to the legacy song endpoint when the primary (ytm-kt) response was
+missing `lyricsId`/`relatedId`/`isLiked`, never when it came back with an empty artists list.
+Since ytm-kt's artist extraction is more fragile against YouTube's current response shape than
+the legacy endpoint's independent fallback (which keys off menu icon type instead of browse page
+type), a track with all three extras present but no artists never got a second chance and fell
+straight through to "Unknown Artist". An empty artists list now also triggers the legacy fetch.
 
-## To land the fix upstream
+## To land either fix upstream at Abhishek890/Eco-Youtube_Music
 
-This session has no write access to `Abhishek890/Eco-Youtube_Music` (not a collaborator), so
-the fix can't be pushed or PR'd there directly from here. To get it merged:
-
-1. Fork `Abhishek890/Eco-Youtube_Music` on GitHub (one tap on mobile: open the repo → **Fork**).
-2. On the fork, open each of the two files above via GitHub's web editor (pencil icon) and
-   paste in the contents from this folder, replacing the original.
-3. Commit each change, then use GitHub's **Contribute → Open pull request** button on the
-   fork's page to send it upstream.
-
-No terminal or `git apply` required — steps 2 and 3 work entirely through the GitHub mobile
-web UI.
+This session has no write access there (not a collaborator), so it can't be pushed or PR'd
+directly from here. From the fork above, GitHub's **Contribute → Open pull request** button
+sends either commit upstream with one tap — no terminal required.
