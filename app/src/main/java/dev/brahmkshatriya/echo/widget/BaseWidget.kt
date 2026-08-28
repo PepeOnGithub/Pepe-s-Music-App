@@ -161,10 +161,7 @@ abstract class BaseWidget : AppWidgetProvider(), KoinComponent {
             val isPlaying = if (current != null) controller.playWhenReady else false
             views.setOnClickPendingIntent(
                 R.id.playPauseButton, context.createIntent(
-                    clazz,
-                    if (current != null) {
-                        if (isPlaying) ACTION_PLAY_PAUSE else ACTION_PLAY_PAUSE
-                    } else ACTION_RESUME
+                    clazz, if (current != null) ACTION_PLAY_PAUSE else ACTION_RESUME
                 )
             )
             views.setFloat(R.id.playPauseButton, "setAlpha", if (item != null) 1f else 0.5f)
