@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
 
       - name: Fetch upstream
-        run: git fetch https://github.com/brahmkshatriya/echo.git main:upstream-main
+        run: git fetch https://github.com/itsmechinmoy/echo-nightly.git main:upstream-main
 
       - name: Merge upstream into main
         run: |

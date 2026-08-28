@@ -2,7 +2,8 @@
 
 <p>
 An Extension-based Music Player for Android, designed with a clean and intuitive UI. This is a
-personal fork of <a href="https://github.com/brahmkshatriya/echo">brahmkshatriya/echo</a>.
+personal fork of <a href="https://github.com/itsmechinmoy/echo-nightly">itsmechinmoy/echo-nightly</a>,
+itself tracking <a href="https://github.com/brahmkshatriya/echo">brahmkshatriya/echo</a>.
 </p>
 
 > [!NOTE]
@@ -14,8 +15,11 @@ personal fork of <a href="https://github.com/brahmkshatriya/echo">brahmkshatriya
 
 ## About this fork
 
-This fork tracks upstream Echo and layers in fixes and tweaks that haven't landed (or won't land)
-upstream yet. If you hit an issue that also affects upstream Echo, please check
+This fork tracks [itsmechinmoy/echo-nightly](https://github.com/itsmechinmoy/echo-nightly) and
+layers in fixes and tweaks that haven't landed (or won't land) upstream yet. A scheduled workflow
+merges that upstream's `main` in automatically, so this fork shouldn't drift behind it. If you hit
+an issue that also affects upstream, check
+[itsmechinmoy/echo-nightly](https://github.com/itsmechinmoy/echo-nightly/issues) or
 [brahmkshatriya/echo](https://github.com/brahmkshatriya/echo/issues) first — most bugs are shared.
 Extension-specific bugs (e.g. a crash from the YouTube Music extension) belong in that extension's
 own repository, not here.
