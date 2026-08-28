@@ -2,9 +2,13 @@ package dev.brahmkshatriya.echo.accessibility
 
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo
+import android.os.Bundle
 import android.view.KeyEvent
 import android.view.accessibility.AccessibilityEvent
 import dev.brahmkshatriya.echo.di.App
+import dev.brahmkshatriya.echo.playback.MediaItemUtils.isLiked
+import dev.brahmkshatriya.echo.playback.PlayerCommands.likeCommand
+import dev.brahmkshatriya.echo.playback.PlayerCommands.unlikeCommand
 import dev.brahmkshatriya.echo.utils.ContextUtils.getSettings
 import dev.brahmkshatriya.echo.widget.ControllerHelper
 import org.koin.core.component.KoinComponent
@@ -47,6 +51,12 @@ class KeybindAccessibilityService : AccessibilityService(), KoinComponent {
                 playWhenReady = !playWhenReady
             }
 
+            prefs.getString(LIKE_KEYBIND_KEY, DEFAULT_LIKE_KEYBIND) -> {
+                val item = controller.currentMediaItem ?: return false
+                val command = if (item.isLiked) unlikeCommand else likeCommand
+                controller.sendCustomCommand(command, Bundle.EMPTY)
+            }
+
             else -> return false
         }
         consumedKeyCodes.add(event.keyCode)
@@ -65,8 +75,10 @@ class KeybindAccessibilityService : AccessibilityService(), KoinComponent {
         private const val SERVICE_KEY = "keybind_accessibility_service"
         const val SKIP_KEYBIND_KEY = "keybind_skip"
         const val PLAY_PAUSE_KEYBIND_KEY = "keybind_play_pause"
+        const val LIKE_KEYBIND_KEY = "keybind_like"
         const val DEFAULT_SKIP_KEYBIND = "CTRL+S"
         const val DEFAULT_PLAY_PAUSE_KEYBIND = "CTRL+P"
+        const val DEFAULT_LIKE_KEYBIND = "CTRL+L"
 
         private val MODIFIER_KEY_CODES = setOf(
             KeyEvent.KEYCODE_CTRL_LEFT, KeyEvent.KEYCODE_CTRL_RIGHT,

@@ -137,6 +137,7 @@
     <string name="keybind_enable_summary">Skip and play/pause with a keyboard shortcut even while another app is focused, e.g. while gaming. Requires enabling the Echo Accessibility Service below — on MIUI/HyperOS you may also need to disable battery optimization and enable Autostart for Echo, and re-enable this if MIUI turns it off again.</string>
     <string name="keybind_skip">Skip Song</string>
     <string name="keybind_play_pause">Play / Pause</string>
+    <string name="keybind_like">Like / Unlike</string>
     <string name="keybind_press_a_key">Press a key combination…</string>
     <string name="keybind_service_name">Echo Global Keybinds</string>
     <string name="keybind_service_description">Lets Echo\'s skip and play/pause keybinds work while another app is in focus.</string>

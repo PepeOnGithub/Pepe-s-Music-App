@@ -11,8 +11,10 @@ import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import dev.brahmkshatriya.echo.R
+import dev.brahmkshatriya.echo.accessibility.KeybindAccessibilityService.Companion.DEFAULT_LIKE_KEYBIND
 import dev.brahmkshatriya.echo.accessibility.KeybindAccessibilityService.Companion.DEFAULT_PLAY_PAUSE_KEYBIND
 import dev.brahmkshatriya.echo.accessibility.KeybindAccessibilityService.Companion.DEFAULT_SKIP_KEYBIND
+import dev.brahmkshatriya.echo.accessibility.KeybindAccessibilityService.Companion.LIKE_KEYBIND_KEY
 import dev.brahmkshatriya.echo.accessibility.KeybindAccessibilityService.Companion.PLAY_PAUSE_KEYBIND_KEY
 import dev.brahmkshatriya.echo.accessibility.KeybindAccessibilityService.Companion.SKIP_KEYBIND_KEY
 import dev.brahmkshatriya.echo.common.models.ImageHolder.Companion.toResourceImageHolder
@@ -197,6 +199,18 @@ class SettingsPlayerFragment : BaseSettingsFragment() {
                     summary = currentValue(DEFAULT_PLAY_PAUSE_KEYBIND)
                     setOnPreferenceClickListener {
                         showRecorderDialog(DEFAULT_PLAY_PAUSE_KEYBIND)
+                        true
+                    }
+                }
+
+                KeybindPreference(context).apply {
+                    key = LIKE_KEYBIND_KEY
+                    title = getString(R.string.keybind_like)
+                    isIconSpaceReserved = false
+                    addPreference(this)
+                    summary = currentValue(DEFAULT_LIKE_KEYBIND)
+                    setOnPreferenceClickListener {
+                        showRecorderDialog(DEFAULT_LIKE_KEYBIND)
                         true
                     }
                 }
