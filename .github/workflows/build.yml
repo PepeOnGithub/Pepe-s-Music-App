@@ -21,6 +21,12 @@ jobs:
       - run: chmod +x gradlew
       - name: Build
         run: ./gradlew assembleDebug --no-daemon --stacktrace
+      - name: Build optimized (R8-minified) variant
+        run: ./gradlew assembleOptimized --no-daemon --stacktrace
+      - uses: actions/upload-artifact@v4
+        with:
+          name: music-optimized-apk
+          path: app/build/outputs/apk/optimized/*.apk
       - uses: actions/upload-artifact@v4
         with:
           name: music-debug-apk
