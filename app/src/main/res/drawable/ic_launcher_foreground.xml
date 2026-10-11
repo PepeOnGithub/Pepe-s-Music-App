@@ -1,0 +1,33 @@
+<!-- Music glyph: Font Awesome Free (CC BY 4.0), https://fontawesome.com -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:pathData="M54,33.75a20.25,20.25 0 1 1 0,40.5a20.25,20.25 0 1 1 0,-40.5z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:startX="54" android:startY="33.75" android:endX="54" android:endY="74.25" android:type="linear">
+                <item android:color="#FFFFFDF6" android:offset="0.0" />
+                <item android:color="#FFF3E7C9" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <group android:scaleX="0.075" android:scaleY="0.075" android:translateX="35.40" android:translateY="36.40">
+        <path android:fillColor="#4C000000" android:fillType="evenOdd" android:pathData="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7l0 72 0 264c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L448 147 192 223.8 192 432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L128 200l0-72c0-14.1 9.3-26.6 22.8-30.7l320-96c9.7-2.9 20.2-1.1 28.3 5z" />
+    </group>
+    <group android:scaleX="0.075" android:scaleY="0.075" android:translateX="36.00" android:translateY="37.80">
+        <path android:fillColor="#33000000" android:fillType="evenOdd" android:pathData="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7l0 72 0 264c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L448 147 192 223.8 192 432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L128 200l0-72c0-14.1 9.3-26.6 22.8-30.7l320-96c9.7-2.9 20.2-1.1 28.3 5z" />
+    </group>
+    <group android:scaleX="0.075" android:scaleY="0.075" android:translateX="36.80" android:translateY="39.40">
+        <path android:fillColor="#1F000000" android:fillType="evenOdd" android:pathData="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7l0 72 0 264c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L448 147 192 223.8 192 432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L128 200l0-72c0-14.1 9.3-26.6 22.8-30.7l320-96c9.7-2.9 20.2-1.1 28.3 5z" />
+    </group>
+    <group android:scaleX="0.075" android:scaleY="0.075" android:translateX="34.8" android:translateY="34.8">
+        <path android:fillType="evenOdd" android:pathData="M499.1 6.3c8.1 6 12.9 15.6 12.9 25.7l0 72 0 264c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L448 147 192 223.8 192 432c0 44.2-43 80-96 80s-96-35.8-96-80s43-80 96-80c11.2 0 22 1.6 32 4.6L128 200l0-72c0-14.1 9.3-26.6 22.8-30.7l320-96c9.7-2.9 20.2-1.1 28.3 5z">
+            <aapt:attr name="android:fillColor">
+                <gradient android:startX="60" android:startY="40" android:endX="450" android:endY="480" android:type="linear">
+                    <item android:color="#FF7ACB7B" android:offset="0.0" />
+                    <item android:color="#FF2E7D32" android:offset="1.0" />
+                </gradient>
+            </aapt:attr>
+        </path>
+    </group>
+</vector>

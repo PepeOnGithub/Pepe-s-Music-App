@@ -1,0 +1,6 @@
+{
+  "name": "Pepe's Music",
+  "description": "Free music player with full tracks, live radio, previews and synced lyrics from open APIs — no account, no ads.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="search"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_search_short"
+        android:shortcutLongLabel="@string/shortcut_search_long">
+        <intent
+            android:action="xyz.pepe.glacierclient.musicapp.SHORTCUT_SEARCH"
+            android:targetPackage="xyz.pepe.glacierclient.musicapp"
+            android:targetClass="xyz.pepe.glacierclient.musicapp.MainActivity" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="liked"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_liked_short"
+        android:shortcutLongLabel="@string/shortcut_liked_long">
+        <intent
+            android:action="xyz.pepe.glacierclient.musicapp.SHORTCUT_LIKED"
+            android:targetPackage="xyz.pepe.glacierclient.musicapp"
+            android:targetClass="xyz.pepe.glacierclient.musicapp.MainActivity" />
+    </shortcut>
+</shortcuts>
