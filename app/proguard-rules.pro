@@ -10,3 +10,9 @@
 # Media3
 -keep class androidx.media3.** { *; }
 -dontwarn androidx.media3.**
+
+# Rhino (used by the YouTube extractor) references desktop-JVM classes that don't exist on Android.
+-dontwarn java.beans.**
+-dontwarn javax.script.**
+-dontwarn jdk.dynalink.**
+-dontwarn org.mozilla.javascript.tools.**
